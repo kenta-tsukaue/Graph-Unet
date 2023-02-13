@@ -76,7 +76,7 @@ class FileLoader(object):
         label_dict = {}
         feat_dict = {}
 
-        with open('data/%s/%s.txt' % (args.data, args.data), 'r') as f:
+        with open('../data/%s/%s.txt' % (args.data, args.data), 'r') as f:
             lines = f.readlines()
         f = self.line_genor(lines)
         n_g = int(next(f).strip())
