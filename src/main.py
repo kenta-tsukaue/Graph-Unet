@@ -24,8 +24,7 @@ def get_args():
     parser.add_argument('-drop_c', type=float, default=0.2, help='drop output')
     parser.add_argument('-act_n', type=str, default='ELU', help='network act')
     parser.add_argument('-act_c', type=str, default='ELU', help='output act')
-    #parser.add_argument('-ks', nargs='+', type=float, default='0.9 0.8 0.7')
-    parser.add_argument('-ks', nargs='+', type=float, default='0.9')
+    parser.add_argument('-ks', nargs='+', type=float, default=[0.9,0.8,0.7])
     parser.add_argument('-acc_file', type=str, default='re', help='acc file')
     args, _ = parser.parse_known_args()
     return args
