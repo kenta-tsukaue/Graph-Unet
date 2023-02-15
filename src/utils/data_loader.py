@@ -83,6 +83,7 @@ class FileLoader(object):
             lines = f.readlines()
         f = self.line_genor(lines)
         n_g = int(next(f).strip())
+        print("n_g:",n_g)
         for i in tqdm(range(n_g), desc="Create graph", unit='graphs'):
             g = self.gen_graph(f, i, label_dict, feat_dict, args.deg_as_tag)
             g_list.append(g)
