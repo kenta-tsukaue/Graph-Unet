@@ -19,9 +19,9 @@ class GNet(nn.Module):
         Initializer.weights_init(self)
 
     def forward(self, gs, hs, labels):
-        #print("gs:", gs)
-        #print("hs:", hs)
-        #print("labels", labels)
+        print("gs:", gs.shape)
+        print("hs:", hs.shape)
+        print("labels", labels.shape)
         hs = self.embed(gs, hs)
         logits = self.classify(hs)
         return self.metric(logits, labels)
