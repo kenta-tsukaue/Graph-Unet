@@ -36,7 +36,10 @@ class FileLoader(object):
 
     def gen_graph(self, f, i, label_dict, feat_dict, deg_as_tag):
         row = next(f).strip().split()
+        print("row:",row)
         n, label = [int(w) for w in row]
+        print("n:",n)
+        print("label:",label)
         if label not in label_dict:
             label_dict[label] = len(label_dict)
         g = nx.Graph()
