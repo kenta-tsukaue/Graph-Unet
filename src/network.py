@@ -7,18 +7,21 @@ from utils.ops import GCN, GraphUnet, Initializer, norm_g
 class GNet(nn.Module):
     def __init__(self, in_dim, n_classes, args):
         super(GNet, self).__init__()
-        self.n_act = getattr(nn, args.act_n)()
-        self.c_act = getattr(nn, args.act_c)()
-        self.s_gcn = GCN(in_dim, args.l_dim, self.n_act, args.drop_n)
+        self.n_act = getattr(nn, args.act_n)()#活性化関数
+        self.c_act = getattr(nn, args.act_c)()#活性化関数
+        self.s_gcn = GCN(in_dim, args.l_dim, self.n_act, args.drop_n)# GCN
         self.g_unet = GraphUnet(
-            args.ks, args.l_dim, args.l_dim, args.l_dim, self.n_act,
+            args.ks, args.l_dim, args.l_dim, args.l_dim, self.n_act, # GraphUnet
             args.drop_n)
-        self.out_l_1 = nn.Linear(3*args.l_dim*(args.l_num+1), args.h_dim)
-        self.out_l_2 = nn.Linear(args.h_dim, n_classes)
-        self.out_drop = nn.Dropout(p=args.drop_c)
+        self.out_l_1 = nn.Linear(3*args.l_dim*(args.l_num+1), args.h_dim) # Linear
+        self.out_l_2 = nn.Linear(args.h_dim, n_classes) # Linear
+        self.out_drop = nn.Dropout(p=args.drop_c) # Dropout
         Initializer.weights_init(self)
 
     def forward(self, gs, hs, labels):
+        print("gs:", gs)
+        print("hs:", hs)
+        print("labels", labels)
         hs = self.embed(gs, hs)
         logits = self.classify(hs)
         return self.metric(logits, labels)
