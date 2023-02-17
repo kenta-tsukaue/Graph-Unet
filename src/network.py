@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from utils.ops import GCN, GraphUnet, Initializer, norm_g
+import numpy as np
 
 
 class GNet(nn.Module):
@@ -19,9 +20,9 @@ class GNet(nn.Module):
         Initializer.weights_init(self)
 
     def forward(self, gs, hs, labels):
-        print("gs:", gs.shape)
-        print("hs:", hs.shape)
-        print("labels", labels.shape)
+        print("gs:", np.array(gs).shape)
+        print("hs:", np.array(hs).shape)
+        print("labels", np.array(labels).shape)
         hs = self.embed(gs, hs)
         logits = self.classify(hs)
         return self.metric(logits, labels)
