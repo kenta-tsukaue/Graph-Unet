@@ -36,9 +36,9 @@ class Trainer:
         for batch in tqdm(data, desc=str(epoch), unit='b'):
             cur_len, gs, hs, ys = batch
             
-            print("gs:", np.array(gs).shape)
-            print("hs:", np.array(hs).shape)
-            print("labels", np.array(ys).shape)
+            print("gs:", np.array(gs).shape, gs)
+            print("hs:", np.array(hs).shape, hs)
+            print("labels", np.array(ys).shape, ys)
             gs, hs, ys = map(self.to_cuda, [gs, hs, ys])
             loss, acc = model(gs, hs, ys)
             losses.append(loss*cur_len)
