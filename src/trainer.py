@@ -2,7 +2,7 @@ import torch
 from tqdm import tqdm
 import torch.optim as optim
 from utils.dataset import GraphData
-
+import numpy as np
 
 class Trainer:
     def __init__(self, args, net, G_data):
@@ -35,9 +35,10 @@ class Trainer:
         losses, accs, n_samples = [], [], 0
         for batch in tqdm(data, desc=str(epoch), unit='b'):
             cur_len, gs, hs, ys = batch
-            gs = torch.tensor(gs)
-            hs = torch.tensor(hs)
-            ys = torch.tensor(ys)
+            
+            print("gs:", np.array(gs).shape)
+            #print("hs:", hs.shape)
+            #print("labels", labels.shape)
             gs, hs, ys = map(self.to_cuda, [gs, hs, ys])
             loss, acc = model(gs, hs, ys)
             losses.append(loss*cur_len)
