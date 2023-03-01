@@ -39,8 +39,13 @@ class Trainer:
             #print("gs:", np.array(gs).shape, gs)
             #print("hs:", np.array(hs).shape, hs)
             #print("labels", np.array(ys).shape, ys)
-            print(gs[0].shape,gs[0])
-            print(hs[0].shape,hs[0])
+            print("gs:", gs[0].shape, "hs:", hs[0].shape)
+            print("==============gs===============")
+            for i in range(gs[0].shape[0]):
+                print(gs[0][i])
+            print("==============hs===============")
+            for i in range(hs[0].shape[0]):
+                print(gs[0][i])
             gs, hs, ys = map(self.to_cuda, [gs, hs, ys])
             loss, acc = model(gs, hs, ys)
             losses.append(loss*cur_len)
