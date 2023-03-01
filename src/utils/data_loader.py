@@ -86,6 +86,7 @@ class FileLoader(object):
         print("n_g:",n_g) #グラフ数
         for i in tqdm(range(n_g), desc="Create graph", unit='graphs'):
             g = self.gen_graph(f, i, label_dict, feat_dict, args.deg_as_tag)
+            print(g)
             g_list.append(g)
 
         tagset = set([])
