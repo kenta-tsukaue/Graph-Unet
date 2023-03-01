@@ -86,12 +86,14 @@ class FileLoader(object):
         print("n_g:",n_g) #グラフ数
         for i in tqdm(range(n_g), desc="Create graph", unit='graphs'):
             g = self.gen_graph(f, i, label_dict, feat_dict, args.deg_as_tag)
-            print(g)
+            #print(g)Graph with 225 nodes and 505 edges
             g_list.append(g)
 
         tagset = set([])
         for g in g_list:
+            print("g.node_tags", g.node_tags)
             tagset = tagset.union(set(g.node_tags))
+            print("tagset", tagset)
         tagset = list(tagset)
         tag2index = {tagset[i]: i for i in range(len(tagset))}
 
