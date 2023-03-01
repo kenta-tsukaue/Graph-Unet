@@ -35,7 +35,9 @@ class Trainer:
         losses, accs, n_samples = [], [], 0
         for batch in tqdm(data, desc=str(epoch), unit='b'):
             cur_len, gs, hs, ys = batch
-            gs, hs, ys = map(torch.tensor, [gs, hs, ys])
+            gs = torch.tensor(gs)
+            hs = torch.tensor(hs)
+            ys = torch.tensor(ys)
             gs, hs, ys = map(self.to_cuda, [gs, hs, ys])
             loss, acc = model(gs, hs, ys)
             losses.append(loss*cur_len)
