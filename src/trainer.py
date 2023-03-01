@@ -37,8 +37,8 @@ class Trainer:
             cur_len, gs, hs, ys = batch
             
             print("gs:", np.array(gs).shape)
-            #print("hs:", hs.shape)
-            #print("labels", labels.shape)
+            print("hs:", np.array(hs).shape)
+            print("labels", np.array(ys).shape)
             gs, hs, ys = map(self.to_cuda, [gs, hs, ys])
             loss, acc = model(gs, hs, ys)
             losses.append(loss*cur_len)
