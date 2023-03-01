@@ -91,9 +91,9 @@ class FileLoader(object):
 
         tagset = set([])
         for g in g_list:
-            print("g.node_tags", g.node_tags)
+            #print("g.node_tags", g.node_tags)
             tagset = tagset.union(set(g.node_tags))
-            print("tagset", tagset)
+            #print("tagset", tagset)
         tagset = list(tagset)
         tag2index = {tagset[i]: i for i in range(len(tagset))}
 
